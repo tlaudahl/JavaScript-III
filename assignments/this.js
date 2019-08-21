@@ -44,7 +44,6 @@ let newTravis = new FullName('Travis Laudahl'); // Creates a newTravis object th
 console.log(newTravis.name);
 
 // Principle 4
-
 // code example for Explicit Binding
 
 function logSport() {
