@@ -7,7 +7,7 @@
   
   Each constructor function has unique properties and methods that are defined in their block comments below:
 */
-  
+
 /*
   === GameObject ===
   * createdAt
@@ -23,7 +23,7 @@ function GameObject(character) {
 }
 
 GameObject.prototype.destroy = function() {
-    return `${this.name} was removed from the game`;
+  return `${this.name} was removed from the game`;
 }
 
 /*
@@ -138,6 +138,44 @@ console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
 
   // Stretch task: 
-  // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
+  // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.
+function Villain(character) {
+  Humanoid.call(this, character);
+  this.attack = function() {
+    let damage = Math.floor(Math.random() * 11) // random number between 0 and 10
+  }
+  this.checkDeath = function() {
+    if (this.healthPoints <= 0) {
+      this.destroy();
+    } else {
+      this.attack();
+    }
+  }
+}
+
+Villain.prototype = Object.create(Humanoid.prototype);
+
+function Hero(character) {
+  Humanoid.call(this, character);
+}
+
+Hero.prototype = Object.create(Villain.prototype);
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+  const mainVillain = new Humanoid({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 10,
+    name: 'Lilith',
+    team: 'Forest Kingdom',
+    weapons: [
+      'Bow',
+      'Dagger',
+    ],
+    language: 'Elvish',
+  });
